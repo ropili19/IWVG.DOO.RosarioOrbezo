@@ -1,4 +1,9 @@
 package miw.doo;
+import miw.doo.model.DemoPlayer;
+import miw.doo.model.GameMasterMind;
+import miw.doo.model.HumanPlayer;
+import miw.doo.utils.IO;
+
 import java.util.Random;
 public class MainMenu {
 

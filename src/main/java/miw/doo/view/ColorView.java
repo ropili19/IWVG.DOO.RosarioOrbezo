@@ -1,4 +1,7 @@
-package miw.doo;
+package miw.doo.view;
+
+import miw.doo.model.Color;
+import miw.doo.utils.IO;
 
 public class ColorView {
     Color color;

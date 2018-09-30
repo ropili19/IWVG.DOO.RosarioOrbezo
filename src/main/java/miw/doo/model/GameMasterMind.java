@@ -1,4 +1,6 @@
-package miw.doo;
+package miw.doo.model;
+
+import miw.doo.utils.IO;
 
 import java.util.Random;
 

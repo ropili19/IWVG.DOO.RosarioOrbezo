@@ -1,4 +1,7 @@
-package miw.doo;
+package miw.doo.model;
+
+import miw.doo.utils.IO;
+import miw.doo.view.ColorFeedbackView;
 
 public class HumanPlayer implements Player {
 
@@ -17,7 +20,7 @@ public class HumanPlayer implements Player {
 
     private Color[] decodeString(String response) {
         IO io = new IO();
-        if(response.length()!=Board.SECRET_SIZE){
+        if(response.length()!= Board.SECRET_SIZE){
             io.println("El número de caracteres no es correcto.");
             return null;
         }

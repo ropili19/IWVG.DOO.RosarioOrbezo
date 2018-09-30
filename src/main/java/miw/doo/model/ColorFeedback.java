@@ -1,4 +1,4 @@
-package miw.doo;
+package miw.doo.model;
 
 public enum ColorFeedback {
 	DEAD,

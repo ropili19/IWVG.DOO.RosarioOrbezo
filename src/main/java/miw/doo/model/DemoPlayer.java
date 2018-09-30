@@ -1,10 +1,14 @@
-package miw.doo;
+package miw.doo.model;
+
+import miw.doo.utils.IO;
+import miw.doo.view.ColorFeedbackView;
+import miw.doo.view.ColorView;
 
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class DemoPlayer  implements Player{
+public class DemoPlayer  implements Player {
 
     private Random random;
     private Color[] lastGuess;

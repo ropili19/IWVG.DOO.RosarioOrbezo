@@ -1,4 +1,5 @@
-package miw.doo;
+package miw.doo.model;
+
 
 public interface Player {
 

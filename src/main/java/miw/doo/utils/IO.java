@@ -1,4 +1,4 @@
-package miw.doo;
+package miw.doo.utils;
 import java.util.Scanner;
 public class IO {
     Scanner input;

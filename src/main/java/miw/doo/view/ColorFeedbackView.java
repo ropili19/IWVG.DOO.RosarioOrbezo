@@ -1,4 +1,7 @@
-package miw.doo;
+package miw.doo.view;
+
+import miw.doo.model.ColorFeedback;
+import miw.doo.utils.IO;
 
 public class ColorFeedbackView {
 
@@ -9,16 +12,16 @@ public class ColorFeedbackView {
 
         private IO io;
 
-        ColorFeedbackView(ColorFeedback color) {
+        public ColorFeedbackView(ColorFeedback color) {
             this.color = color;
             io = new IO();
         }
 
-        void write(String title) {
+        public void write(String title) {
             io.print(title + this.toChar());
         }
 
-        void writeln(String title) {
+        public void writeln(String title) {
             this.write(title);
             io.println("");
         }
