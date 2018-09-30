@@ -7,61 +7,69 @@ import java.util.Set;
 public class DemoPlayer  implements Player{
 
     private Random random;
-    private String lastGuess;
-    private Set<Character> candidates[];
-    private char[] success;
-    //TODO: Cosas del tablero... pasar como parametro
-    private static final int SECRET_SIZE = 4;
+    private Color[] lastGuess;
+    private Set<Color> candidates[];
+    private Color[] success;
+
+    private static final int SECRET_SIZE = Board.SECRET_SIZE;
 
     public DemoPlayer( Random random){
         this.random = random;
-
+        lastGuess = new Color[SECRET_SIZE];
         candidates = new Set[SECRET_SIZE];
-        success = new char[SECRET_SIZE];
+        success = new Color[SECRET_SIZE];
         for (int i = 0; i < SECRET_SIZE; i++) {
-            success[i] = '_';
-            candidates[i] = new HashSet<Character>();
-            String colors = "ARVZ";//TODO
-            for (int j = 0; j < colors.length(); j++) {
-                candidates[i].add(colors.charAt(j));
+           // success[i] = '_';
+            candidates[i] = new HashSet<Color>();
+            Color[] colors = Color.values();
+            for (int j = 0; j < colors.length; j++) {
+                candidates[i].add(colors[j]);
             }
         }
     }
 
-    @Override
-    public String getNewGuess() {
+
+    public Color[] getNewGuess() {
         IO io=new IO();
         io.println("Intento? [cuatro letras de entre A-amarillo, R-rojo, V-verde, Z-azul]");
-        this.lastGuess = "";
+
         for (int i = 0; i < SECRET_SIZE; i++) {
-            if (success[i] != '_') {
-                this.lastGuess += success[i];
+            if (success[i] != null) {
+                this.lastGuess[i] = success[i];
             } else {
-                this.lastGuess += newCharacterGuess(i);
+                this.lastGuess[i] = newCharacterGuess(i);
             }
         }
-        io.println("La máquina insertará "+lastGuess);
+        io.print("La máquina insertará ");
+        viewColor(lastGuess);
+        io.println(" ");
         return lastGuess;
     }
 
-    private char newCharacterGuess(int pos) {
-        Character[] arraycandidates = this.candidates[pos].toArray(new Character[0]);
+    private void viewColor(Color[] lastGuess) {
+        for (Color c : lastGuess) {
+            new ColorView(c).write();
+        }
+    }
+
+    private Color newCharacterGuess(int pos) {
+        Color[] arraycandidates = this.candidates[pos].toArray(new Color[0]);
         return arraycandidates[random.nextInt(arraycandidates.length)];
     }
 
-    @Override
+
     public void sendFeedback(ColorFeedback[] feedback) {
         IO io=new IO();
         for (int i = 0; i < feedback.length; i++) {
             ColorFeedback c = feedback[i];
             if(c == ColorFeedback.DEAD) { //muertos
-                success[i]=lastGuess.charAt(i);
+                success[i]=lastGuess[i];
             } else if(c ==ColorFeedback.NONE) {//ninguno
-                for (Set<Character> candidate : candidates) {
-                    candidate.remove(lastGuess.charAt(i));
+                for (Set<Color> candidate : candidates) {
+                    candidate.remove(lastGuess[i]);
                 }
             }else {
-                candidates[i].remove(lastGuess.charAt(i));
+                candidates[i].remove(lastGuess[i]);
             }
         }
         viewScore(feedback);

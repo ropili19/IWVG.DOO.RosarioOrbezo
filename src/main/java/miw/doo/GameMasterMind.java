@@ -15,7 +15,7 @@ public class GameMasterMind {
         io.println("Secreto:****");
         Board board = new Board(4, random);
         while (!board.isFinished()) {
-            String guess = player.getNewGuess();
+            Color[] guess = player.getNewGuess();
             ColorFeedback[] feedback = board.makeGuess(guess);
             if (!board.isWinner() && feedback!=null) {
                 player.sendFeedback(feedback);

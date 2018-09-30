@@ -2,7 +2,7 @@ package miw.doo;
 
 public interface Player {
 
-    String getNewGuess();
+    Color[] getNewGuess();
 
     void sendFeedback(ColorFeedback[] feedback);
 }
